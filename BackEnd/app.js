@@ -68,12 +68,13 @@ app.post('/login', async(req,res) => {
 app.post('/posts/savepost', function(req,res){
    console.log(req.body);
    const post = {       
-        title : req.body.title,
-        content : req.body.content,
-        username : req.body.username,
+        title : req.body.blog.title,
+        content : req.body.blog.content,
+        username : req.body.blog.username,
    }       
    const newpost = new postModel(post);
    newpost.save();
+   console.log('data added successfully...')
 });
 
 //Posts pending approval in admin page

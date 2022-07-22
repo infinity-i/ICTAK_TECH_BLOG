@@ -8,8 +8,8 @@ export class BlogService {
 
   constructor(public http:HttpClient) { }
 
-  newBlogs(item:any){
-    return this.http.post('http://localhost:3000/insert', { item })
+  newBlogs(blog:any){
+    return this.http.post('http://localhost:3000/posts/savepost',{'blog':blog})
     .subscribe((data)=>console.log(data));
   }
 }
