@@ -18,7 +18,9 @@ loginUser(loginUserData: any) {
   return this.http.post<any>('http://localhost:3000/login',{loginUserData});
 }
 
-
+adminLogin(loginUserData: any) {
+  return this.http.post<any>('http://localhost:3000/admin/login',{loginUserData});
+}
 getToken() {
     return localStorage.getItem('token')
   }

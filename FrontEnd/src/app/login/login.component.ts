@@ -38,8 +38,17 @@ onlogin() {
     if(this.loginUserData.email==null||this.loginUserData.password==null){
       console.log("values missing");
       this.router.navigate(['login'])
-    }
-    else{
+    }else if(this.loginUserData.email=="admin@admin.com"){
+      this.auth.adminLogin(this.loginUserData)
+      .subscribe(res => {
+          localStorage.setItem('token', res.token)
+          this.router.navigate(['/admin'])
+        },
+        (     err: any) => {
+          console.log(err);
+          this.router.navigate(['login'])
+        });
+    }else{
       this.auth.loginUser(this.loginUserData)
         .subscribe(res => {
             localStorage.setItem('token', res.token)

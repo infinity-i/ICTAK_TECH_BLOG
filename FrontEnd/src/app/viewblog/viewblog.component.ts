@@ -10,7 +10,7 @@ import { BlogModel } from '../add-blog/add-blog.model';
 export class ViewblogComponent implements OnInit {
 
   // blogdata : BlogModel[] | any;
-  blogdata = new BlogModel('','','','','','')
+  blogdata = new BlogModel('','','','','','','')
   // blogdata = {
   //   blogtitle:'',
   //   blogauthor:'',

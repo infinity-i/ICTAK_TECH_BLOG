@@ -5,6 +5,7 @@ export class BlogModel {
         public username:String,
         public category:String,
         public approved:String,
-        public createdttm:string
+        public createdttm:string,
+        public imageUrl:String,
     ) { }
 }

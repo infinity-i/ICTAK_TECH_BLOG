@@ -6,7 +6,9 @@
         <div class="link">
             <a routerLink="back">Home</a>
             <a routerLink="addblog" *ngIf= "auth.loggedIn()">Add blog</a>
+            <a routerLink="logout" *ngIf= "auth.loggedIn()" (click)="logoutUser()">Logout</a>
             <!-- <a routerLink="viewblog">viewB</a> -->
+            
     
         </div>
     </div>

@@ -10,7 +10,7 @@ const bcrypt = require ("bcryptjs");
 const req = require('express/lib/request');
 const posts = require('./src/model/PostModel');
 const app = new express();
-// const multer = require('multer');
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -32,22 +32,39 @@ app.get('/', (req, res) => {
 //         return res.status(401).send('Unauthorized request')
 //     }
 //     let token = req.headers.authorization.split('')[1]
-//     console.log(token)
-    // if (token =='null')
-    // {
-    //     return res.status(401).send('Unauthorized request')
-    // }
+//     console.log({token});
+//     if (token =='null')
+//     {
+//         return res.status(401).send('Unauthorized request')
+//     }
     
-    // let payload= jwt.verify(token,'secretkey')
+//     let payload= jwt.verify(token,'secretkey')
 
-    // console.log(payload)
-    // if(!payload)
-    // {
-    //     return res.status(401).send('Unauthorized request')
-    // }
-    // req.userId=payload.subject
-   // next()
-//}
+//     console.log(payload)
+//     if(!payload)
+//     {
+//         return res.status(401).send('Unauthorized request')
+//     }
+//     req.userId=payload.subject
+//    next()
+// }
+
+function verifyToken(req,res,next){
+    let authHeader = req.headers.authorization;
+    if(authHeader==undefined){
+        res.status(401).send({error:"no token provided"})
+    }
+    let token = authHeader.split(" ")[1]
+    jwt.verify(token,"secret",function(err,decoded){
+        if(err){
+            res.status(500).send({error:"Authentication failed"})
+        }
+        else {
+            next();
+        }
+    }
+    )
+}
 
 
 //Register API
@@ -63,12 +80,13 @@ app.post('/register', async (req,res)=> {
                 phoneNo: req.body.registerUserData.phoneNo,
                 password : req.body.registerUserData.password,
                 repeatPassword : req.body.registerUserData.repeatPassword,
-                 userType : req.body.registerUserData.userType
+                userType : req.body.registerUserData.userType
             })
         const user= await userdata.save();
         res.status(201);
         console.log('registration successfull')
         }else{
+            
             res.send("Password not matching");
         }  
 
@@ -148,7 +166,7 @@ app.get('/admin/pending', function(req,res){
 app.get('/posts', function(req,res){
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Methods:GET,POST,PUT,DELETE");
-    postModel.find({approved:true})
+    postModel.find({approved:true}).sort({createdttm:-1})
     .then(function(post){
         console.log('All Approved Posts displayed');
         res.send(post);

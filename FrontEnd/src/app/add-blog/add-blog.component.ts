@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-blog',
   templateUrl: './add-blog.component.html',
-  styleUrls: ['./add-blog.component.css']
+  styleUrls: ['./add-blog.component.css'] 
 })
 export class AddBlogComponent implements OnInit {
-  newBlog = new BlogModel("","","","","","");
+  newBlog = new BlogModel("","","","","","","");
   constructor(private toast:NgToastService, public blogService: BlogService, public router:Router) { }
 
   ngOnInit(): void {

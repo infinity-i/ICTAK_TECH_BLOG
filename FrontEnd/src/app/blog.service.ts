@@ -14,7 +14,7 @@ export class BlogService {
   }
 
   getBlogs(){
-    return this.http.get('http://localhost:3000/admin/pending');
+    return this.http.get('http://localhost:3000/posts');
   }
 
   singleblog(id:any){
