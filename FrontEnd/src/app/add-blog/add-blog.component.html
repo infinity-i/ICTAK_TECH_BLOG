@@ -38,7 +38,7 @@
           <!-- <div class="mb-2"> -->
             <!-- <label for="formFile" class="form-label">Default file input example</label> -->
             <input class="form-control form-control-lg" type="file" id="formFileLg" (change)="onFileSelect($event)" accept="image/*" required>
-            <label class="text-danger">{{message}}</label>
+            <small class="text-danger">{{message}}</small>
             <div class="img-space" >
                 <img [src]="cardImageBase64" style="width: 500px;height:200px;" />
             </div>

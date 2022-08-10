@@ -1,0 +1,58 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://media-exp1.licdn.com/dms/image/D4D35AQEi1V5A9Lqprg/profile-framedphoto-shrink_400_400/0/1632138040647?e=1634878800&v=beta&t=GrZ6S61Gzt2mbyCHuH9gMH9RHY1OR8S9_PdVi-QixcY" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
+<body>
+  <app-header></app-header>
+
+
+
+    <section class="bg-light p-5" id="service-section">
+
+        <div class="container">
+          <h1 class="text-center">Pending Blogs</h1>
+            <div class="row">
+                <div class="col-md-6 p-3"  *ngFor="let i of blogs" >
+                    <div class="card text-center p-4">
+                      <i class="bi bi-code-slash"></i>
+                        <div class="card-body" (click)="showblog(i)">
+                         <div class="imgContainer"><img [src]="i.imageUrl" alt=""></div><br>
+                          <h5 class="card-title">{{i.title}}</h5>
+                          <h6 class="card-title">{{i.username}}</h6>
+                        <!-- <input type="checkbox" id={{i._id}} /> -->
+
+                          <!-- <div class="inner"> -->
+                          <!-- <p class="card-text" id="para">{{i.content}}</p> -->
+                        <!-- </div> -->
+                        </div>
+
+                        <!-- <label for={{i._id}} >Read </label> -->
+                        <!-- <button type="button" id="button" class="btn btn-danger" (click)= "Delete(i._id)">Delete</button> -->
+                        <div class="button">
+                            <label>Category :</label>
+                            <select id="filter" name="category"  [(ngModel)]="i.category">
+                             <option value="Technology" name="category">Technology</option>
+                             <option value="Events" name="category">Events</option>
+                             <option value="Paatshala" name="category">Paatshala</option>
+                             <option value="Career" name="category">Career</option>
+                             <option value="Others" name="category">Others</option>
+                            </select>
+                              <button id="acceptbtn" type="button" class="btn btn-success" (click)="onAccept(i)">Accept</button>
+                              <button type="button"  class="btn btn-danger" (click)= "Delete(i._id)">Deny</button>
+                             </div>
+                       </div>
+                </div>
+        </div>
+       </div>
+      
+    </section>
+
+    
+    <app-footer></app-footer>    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>

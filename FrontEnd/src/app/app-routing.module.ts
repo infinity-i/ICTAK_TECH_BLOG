@@ -1,3 +1,4 @@
+import { TablesComponent } from './tables/tables.component';
 import { PendingComponent } from './pending/pending.component';
 import { AdminComponent } from './admin/admin.component';
 import { NgModule } from '@angular/core';
@@ -39,7 +40,12 @@ const routes: Routes = [{path:'',component:WelcomeComponent},
   ]},
   {path:'admin',component:AdminComponent},
   {path:'pending',component:PendingComponent},
-  {path:'adminadd',component:AddBlogComponent}];
+  {path:'adminadd',component:AddBlogComponent},
+  {path:'tables',component:TablesComponent,
+  children: [
+    {path:'blogs',component:BlogsComponent},
+    {path:'viewblog',component:ViewblogComponent}
+  ]} ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
